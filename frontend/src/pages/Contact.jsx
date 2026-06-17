@@ -52,10 +52,9 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
+    
     try {
       await publicApi.submitContact(fields);
-      const waUrl = `https://wa.me/${company.whatsapp}?text=${buildWhatsAppText()}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
       setStatus('sent');
       setFields({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch {
@@ -85,14 +84,7 @@ export default function Contact() {
               >
                 <FiCheckCircle className="text-5xl text-green-500" />
                 <h3 className="font-heading text-2xl font-bold text-green-700">Message Sent!</h3>
-                <p className="max-w-xs text-green-600">Your enquiry was sent to our email. WhatsApp should have opened — if not, tap the button below.</p>
-                <a
-                  href={`https://wa.me/${company.whatsapp}?text=${buildWhatsAppText()}`}
-                  target="_blank" rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-2 rounded-full bg-green-500 px-6 py-3 font-heading font-bold text-white"
-                >
-                  <FaWhatsapp /> Open WhatsApp
-                </a>
+                <p className="max-w-xs text-green-600">Your enquiry was successfully sent to {company.email}</p>
                 <button onClick={() => setStatus('idle')} className="mt-2 text-sm font-semibold text-textDark/50 underline">
                   Send another message
                 </button>
@@ -122,12 +114,12 @@ export default function Contact() {
 
                 {status === 'error' && (
                   <p className="rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-600">
-                    Email sending failed. WhatsApp will still open — you can send the message there.
+                    Email sending failed. Please try again or use the WhatsApp button to contact us directly.
                   </p>
                 )}
 
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {/* Primary — Email + WhatsApp */}
+                  {/* Primary — Email only */}
                   <motion.button
                     whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
                     type="submit"
@@ -142,7 +134,7 @@ export default function Contact() {
 
                   {/* Secondary — WhatsApp direct */}
                   <a
-                    href={`https://wa.me/${company.whatsapp}?text=${encodeURIComponent(`Hi, I'd like to enquire about solar services at ANBU ENGINEERING SERVICES.`)}`}
+                    href={`https://wa.me/${company.whatsapp}?text=${buildWhatsAppText()}`}
                     target="_blank" rel="noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 py-4 font-heading font-bold text-white transition hover:bg-green-600"
                   >
@@ -151,7 +143,7 @@ export default function Contact() {
                 </div>
 
                 <p className="text-center text-xs text-textDark/40">
-                  Submitting sends your details to <span className="font-semibold">{company.email}</span> and opens WhatsApp.
+                  Send Message button sends to <span className="font-semibold">{company.email}</span>. WhatsApp button opens chat directly.
                 </p>
               </form>
             )}

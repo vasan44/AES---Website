@@ -46,7 +46,7 @@ export function AnimatedItem({ children, className = '', style }) {
       variants={itemVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.05 }}
+      viewport={{ once: true, amount: 0 }}
     >
       {children}
     </motion.div>

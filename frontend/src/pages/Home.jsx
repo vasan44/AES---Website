@@ -309,13 +309,7 @@ function BestSolarFit() {
         <div className="mt-10 space-y-8 lg:space-y-[-78px]">
           {solarFit.map(({ icon: Icon, img, title, range, bestFor, points }, index) => (
             <AnimatedItem key={title} className="h-full lg:sticky lg:top-28" style={{ zIndex: index + 1 }}>
-              <motion.div
-                className="group overflow-hidden rounded-2xl border border-primary/10 bg-white shadow-soft lg:grid lg:min-h-[520px] lg:grid-cols-[0.95fr_1.05fr] lg:shadow-xl"
-                initial={{ opacity: 0, y: 36, scale: 0.97 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: false, amount: 0.35 }}
-                transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-              >
+              <div className="group overflow-hidden rounded-2xl border border-primary/10 bg-white shadow-soft lg:grid lg:min-h-[520px] lg:grid-cols-[0.95fr_1.05fr] lg:shadow-xl">
                 <div className="flex min-h-[420px] flex-col p-6 sm:p-8 lg:p-10">
                   <span className="w-fit rounded-full bg-accent px-4 py-2 font-heading text-xs font-extrabold text-primary shadow-lg">
                     {title.replace(' Rooftop', '').replace(' Solar', ' Solar')}
@@ -345,7 +339,7 @@ function BestSolarFit() {
                   </div>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent lg:hidden" />
                 </div>
-              </motion.div>
+              </div>
             </AnimatedItem>
           ))}
         </div>
