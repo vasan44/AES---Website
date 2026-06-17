@@ -1,0 +1,21 @@
+
+node_modules/
+.env
+.env.*
+!.env.example
+
+backend/.env
+frontend/.env
+
+.next/
+dist/
+build
+
+/
+*.log
+
+
+Ctrl + O
+Enter
+Ctrl + X
+
