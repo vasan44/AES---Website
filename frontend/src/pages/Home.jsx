@@ -1,20 +1,21 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Marquee from 'react-fast-marquee';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Marquee from 'react-fast-marquee';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import {
   FiBatteryCharging, FiCheckCircle, FiChevronDown,
   FiClipboard, FiHome, FiSend, FiSettings, FiShield,
   FiSun, FiTool, FiZap,
 } from 'react-icons/fi';
-import { FaQuoteLeft } from 'react-icons/fa6';
 import AnimatedCounter from '../components/AnimatedCounter.jsx';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
 import StarRating from '../components/StarRating.jsx';
 import {
-  certifications, counters, images, impactCards, partners, socials, testimonials,
+  certifications, counters, engineeringTeam, images, impactCards, partners, socials,
 } from '../data/siteData.js';
 import heroVideoSrc    from '../assets/videos/solar-hero.mp4';
 import capacityVideoSrc from '../assets/videos/capacity-bg.mp4';
@@ -38,10 +39,10 @@ const homeServices = [
 ];
 
 const whyUs = [
-  { icon: FiShield,       title: 'Safe Installation',      text: 'Every installation follows proper earthing, DC/AC protection, cable routing, and mounting standards.' },
-  { icon: FiSun,          title: 'Quality Components',     text: 'We use certified panels, inverters, and mounting systems for reliable long-term performance.' },
-  { icon: FiCheckCircle,  title: 'End-to-End Service',     text: 'From site survey and system design to commissioning, documentation, and after-sales support.' },
-  { icon: FiZap,          title: 'Fast Commissioning',     text: 'Efficient project execution with minimal downtime and clear timelines from start to finish.' },
+  { icon: FiShield,       title: 'Quality & Safety',       text: 'Documented controls, testing, inspection, safety meetings, and site compliance support dependable execution.' },
+  { icon: FiSun,          title: '250+ MWp Experience',    text: 'Recorded solar work spans utility-scale DC, AC, MMS, piling, civil construction, erection, and O&M scopes.' },
+  { icon: FiCheckCircle,  title: 'Complete Execution',     text: 'Capabilities cover foundations, structures, modules, cabling, rooms, equipment erection, fencing, and handover.' },
+  { icon: FiZap,          title: 'Multi-State Delivery',   text: 'Project experience extends across Tamil Nadu, Karnataka, Kerala, and Andhra Pradesh.' },
 ];
 
 const solarFit = [
@@ -185,7 +186,7 @@ function Hero() {
             className="mt-6 flex flex-wrap gap-4"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}
           >
-            {['100+ Installs', 'MNRE Approved', '25-Year Warranty'].map((badge) => (
+            {['250+ MWp Installed', 'Established 2019', '4 States Covered'].map((badge) => (
               <span key={badge} className="flex items-center gap-2 text-xs font-semibold text-white/70 sm:text-sm">
                 <FiCheckCircle className="text-accent" /> {badge}
               </span>
@@ -210,10 +211,10 @@ function WhyUs() {
         <AnimatedItem className="mx-auto max-w-3xl text-center">
           <p className="font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">Why Choose Us</p>
           <h2 className="mt-3 font-heading text-4xl font-bold text-primary md:text-5xl">
-            Reliable Solar Work, Every Time
+            Proven engineering resources for demanding project sites
           </h2>
           <p className="mt-4 text-lg text-textDark/65">
-            ANBU ENGINEERING SERVICES brings honest consultation, quality components, and professional installation to every solar project across Tamil Nadu.
+            AES combines qualified manpower, owned machinery, flexible management, quality control, and experience across utility solar and allied construction works.
           </p>
         </AnimatedItem>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -464,12 +465,25 @@ function HowItWorks() {
 
 /* ── AWARDS ────────────────────────────────────────────────────────── */
 function Awards() {
-  const Badge = ({ name, image }) => (
+  const CertBadge = ({ name, image }) => (
     <div className="mx-5 flex h-24 w-36 flex-col items-center justify-center gap-2 rounded-xl border border-primary/10 bg-white grayscale transition hover:grayscale-0">
       <img src={image} alt={name} className="h-10 w-24 object-contain" />
       <span className="font-heading text-sm font-bold text-primary">{name}</span>
     </div>
   );
+
+  const ClientBadge = ({ name, image }) => (
+    <div className="mx-5 flex h-32 w-64 items-center justify-center rounded-2xl border border-primary/10 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-accent/70 hover:shadow-soft">
+      <img
+        src={image}
+        alt={`${name} logo`}
+        loading="lazy"
+        decoding="async"
+        className="max-h-24 w-full object-contain"
+      />
+    </div>
+  );
+
   return (
     <AnimatedSection className="section-pad bg-surface">
       <div className="container-page text-center">
@@ -478,14 +492,17 @@ function Awards() {
           <h2 className="mt-2 font-heading text-4xl font-bold text-primary">CERTIFICATIONS &amp; PARTNERS</h2>
         </AnimatedItem>
         <div className="masked-marquee mt-10">
-          <Marquee pauseOnHover>
-            {certifications.map(({ name, image }) => <Badge key={name} name={name} image={image} />)}
+          <Marquee pauseOnHover speed={72}>
+            {certifications.map(({ name, image }) => <CertBadge key={name} name={name} image={image} />)}
           </Marquee>
         </div>
-        <AnimatedItem><h3 className="mt-16 font-heading text-3xl font-bold text-primary">QUALITY PARTNERS</h3></AnimatedItem>
+        <AnimatedItem>
+          <p className="mt-16 font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">Client Logos</p>
+          <h3 className="mt-2 font-heading text-3xl font-bold text-primary">QUALITY PARTNERS</h3>
+        </AnimatedItem>
         <div className="masked-marquee mt-8">
-          <Marquee pauseOnHover direction="right" speed={34}>
-            {partners.map(({ name, image }) => <Badge key={name} name={name} image={image} />)}
+          <Marquee pauseOnHover direction="right" speed={76}>
+            {partners.map(({ name, image }) => <ClientBadge key={name} name={name} image={image} />)}
           </Marquee>
         </div>
       </div>
@@ -499,33 +516,49 @@ function Testimonials() {
     <AnimatedSection className="section-pad bg-primary text-white">
       <div className="container-page">
         <AnimatedItem className="text-center">
-          <p className="font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">Testimonials</p>
-          <h2 className="mt-3 font-heading text-3xl font-bold sm:text-4xl md:text-5xl">What Our Customers Say</h2>
-          <p className="mt-3 text-white/65">Trusted by homes, businesses, and institutions across Tamil Nadu.</p>
+          <p className="font-heading text-xs font-semibold uppercase tracking-[0.25em] text-accent/90">Our Team</p>
+          <h2 className="mt-4 font-heading text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Meet Our Engineering Experts</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-white/60">
+            Experienced professionals delivering reliable solar, electrical, and construction engineering solutions.
+          </p>
         </AnimatedItem>
-        <div className="[overflow-x:clip]">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 6000 }}
-          spaceBetween={24}
-          breakpoints={{ 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }}
-          className="mt-12 pb-12"
-        >
-          {testimonials.map(([text, name, title]) => (
-            <SwiperSlide key={name}>
-              <div className="h-full rounded-xl border border-accent/20 bg-white/5 p-7">
-                <FaQuoteLeft className="text-4xl text-accent" />
-                <p className="mt-5 italic leading-8 text-white/80">{text}</p>
-                <div className="mt-6"><StarRating /></div>
-                <hr className="my-5 border-white/10" />
-                <p className="font-heading font-bold">{name}</p>
-                <p className="text-sm text-white/55">{title}</p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        </div>
+        <AnimatedItem className="mt-12">
+          <Swiper
+            className="testimonial-swiper"
+            modules={[Autoplay, Pagination]}
+            spaceBetween={24}
+            slidesPerView={1}
+            loop
+            grabCursor
+            autoplay={{ delay: 4200, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {engineeringTeam.map((member) => (
+              <SwiperSlide key={member.number}>
+                <article className="flex h-full min-h-[368px] w-full flex-col rounded-xl border border-accent/30 bg-white/[0.06] p-7 sm:p-8">
+                  <span className="grid h-12 w-12 place-items-center rounded-lg bg-accent/20 font-heading text-sm font-bold text-accent">
+                    {member.number}
+                  </span>
+                  <div className="mt-6 flex-1">
+                    <p className="font-heading text-xs font-bold uppercase tracking-[0.12em] text-accent">
+                      {member.designation}
+                    </p>
+                    <h3 className="mt-4 font-heading text-2xl font-bold text-white">{member.name}</h3>
+                    <p className="mt-2 text-white/60">{member.qualification}</p>
+                  </div>
+                  <footer className="mt-6 border-t border-white/10 pt-6">
+                    <p className="font-heading text-sm font-bold text-accent">{member.experience}</p>
+                    <p className="mt-3 text-sm leading-7 text-white/60">{member.description}</p>
+                  </footer>
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </AnimatedItem>
       </div>
     </AnimatedSection>
   );

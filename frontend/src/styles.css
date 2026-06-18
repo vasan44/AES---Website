@@ -94,6 +94,33 @@ a {
   overflow: hidden !important;
 }
 
+.testimonial-swiper {
+  padding-bottom: 54px !important;
+}
+
+.testimonial-swiper .swiper-slide {
+  display: flex;
+  height: auto;
+}
+
+.testimonial-swiper .swiper-pagination {
+  bottom: 4px !important;
+}
+
+.testimonial-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  transition: width 200ms ease, background-color 200ms ease;
+}
+
+.testimonial-swiper .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 999px;
+  background: #ffb100;
+}
+
 .masonry {
   columns: 1;
   column-gap: 18px;

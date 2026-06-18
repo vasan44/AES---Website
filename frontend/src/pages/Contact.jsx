@@ -160,6 +160,8 @@ export default function Contact() {
               href={`mailto:${company.email}`} sub="Tap to send email" />
             <ContactCard icon={FaBriefcase} title="GSTIN"   text={company.gstin}
               sub={copied ? '✓ Copied!' : 'Click to copy'} onClick={copyGSTIN} />
+            <ContactCard icon={FiBriefcase} title="Managing Director" text="A. Arivazhgan, B.E. Civil Engineering"
+              sub="Solar construction project experience across India" href={`tel:+91${company.phone}`} />
 
             {/* WhatsApp CTA */}
             <a

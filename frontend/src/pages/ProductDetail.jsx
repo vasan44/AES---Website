@@ -1,13 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
 import PageHeader from '../components/PageHeader.jsx';
-import { products, resources } from '../data/siteData.js';
+import { products } from '../data/siteData.js';
 
 export default function ProductDetail() {
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug) || products[0];
   const gallery = [product.image, ...products.filter((p) => p.slug !== product.slug).map((p) => p.image)];
-  const serviceProfile = resources.find((r) => r.title === 'Service Profile')?.file || '#';
 
   return (
     <>
@@ -36,9 +35,6 @@ export default function ProductDetail() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href={serviceProfile} className="rounded-full bg-primary px-6 py-3 font-heading font-bold text-white">
-                Download Service Profile
-              </a>
               <Link to="/contact" className="rounded-full bg-accent px-6 py-3 font-heading font-bold text-primary">
                 Request Installation Quote
               </Link>

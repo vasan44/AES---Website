@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiBriefcase, FiMail, FiMapPin, FiMenu, FiPhone, FiX } from 'react-icons/fi';
 import Logo from './Logo.jsx';
+import PreFooterCta from './PreFooterCta.jsx';
 import { company, socials } from '../data/siteData.js';
 
 const nav = [
@@ -260,6 +261,7 @@ export default function AppLayout() {
       <ScrollToTop />
       <Navbar />
       <main><Outlet /></main>
+      <PreFooterCta />
       <Footer />
       {isHome && (
         <div className="fixed right-5 top-1/2 z-50 hidden -translate-y-1/2 flex-col items-center gap-3 xl:flex">

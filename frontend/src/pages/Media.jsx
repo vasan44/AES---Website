@@ -72,14 +72,19 @@ const imageReveal = {
   hidden: ({ direction, reduceMotion }) => reduceMotion
     ? {}
     : {
+        opacity: 0,
         x: direction * 28,
+        y: 18,
       },
-  show: ({ reduceMotion }) => ({
+  show: ({ order, reduceMotion }) => ({
+    opacity: 1,
     x: 0,
+    y: 0,
     transition: reduceMotion
       ? { duration: 0.01 }
       : {
-          duration: 0.32,
+          duration: 0.42,
+          delay: order * 0.1,
           ease: [0.22, 1, 0.36, 1],
         },
   }),
@@ -199,6 +204,7 @@ export default function Media() {
                   variants={imageReveal}
                   custom={{
                     direction: index % 2 === 0 ? -1 : 1,
+                    order: index % 3,
                     reduceMotion,
                   }}
                   initial="hidden"
@@ -206,8 +212,8 @@ export default function Media() {
                   viewport={{ once: true, amount: 0.05 }}
                   className={`flex transform-gpu ${
                     (activeCategory === 'All' && [0, 6, 11].includes(index)) || (activeCategory !== 'All' && index === 0)
-                      ? 'min-h-[430px] lg:col-span-2 lg:min-h-[520px]'
-                      : 'min-h-[360px]'
+                      ? 'min-h-[420px] lg:col-span-2 lg:min-h-[500px]'
+                      : 'min-h-[340px]'
                   }`}
                 >
                   <WorksiteCard
@@ -323,20 +329,21 @@ function WorksiteCard({ item, onClick, featured = false }) {
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.12 }}
       onClick={onClick}
-      className="group relative flex h-full w-full overflow-hidden rounded-xl border border-white/80 bg-slate-200 text-left shadow-[0_12px_28px_rgba(14,26,61,0.10)] transition-colors duration-200 hover:border-accent"
+      className="group relative flex h-full w-full overflow-hidden rounded-2xl border border-white/80 bg-slate-200 text-left shadow-[0_12px_28px_rgba(14,26,61,0.10)] transition-colors duration-300 hover:border-accent"
     >
       <img
         src={item.image}
         alt={item.title}
+        loading="lazy"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/35 to-transparent" />
 
       <span className="absolute left-4 top-4 rounded-full bg-accent px-4 py-1.5 font-heading text-xs font-bold text-primary shadow-md sm:left-5 sm:top-5">
         {item.category}
       </span>
-      <span className="absolute right-4 top-4 grid h-10 w-10 translate-y-2 place-items-center rounded-full bg-white/15 text-xl text-white opacity-0 backdrop-blur transition group-hover:translate-y-0 group-hover:opacity-100">
+      <span className="absolute right-4 top-4 grid h-10 w-10 translate-y-2 place-items-center rounded-full bg-white/15 text-xl text-white opacity-0 backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
         <FiZoomIn />
       </span>
 

@@ -30,7 +30,7 @@ const Fallback = () => <div className="min-h-screen bg-surface pt-32 text-center
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Suspense fallback={<Fallback />}>
         <Routes>
           {/* Public website */}

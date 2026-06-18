@@ -12,6 +12,13 @@ import {
 import { motion } from 'framer-motion';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
 import PageHeader from '../components/PageHeader.jsx';
+import {
+  engineeringExecutionServices,
+  environmentalPolicy,
+  hsePolicy,
+  pilingServices,
+  testingInspectionServices,
+} from '../data/siteData.js';
 import svc1 from '../assets/services/services1.png';
 import svc2 from '../assets/services/services2.png';
 import svc3 from '../assets/services/services3.png';
@@ -92,6 +99,106 @@ export default function Products() {
           <div className="mt-14 grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3">
             {solarServices.map((service, index) => (
               <ServiceCard key={service.title} service={service} number={index + 1} />
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="section-pad bg-white">
+        <div className="container-page">
+          <AnimatedItem className="mx-auto max-w-4xl text-center">
+            <p className="font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">HSE Policy</p>
+            <h2 className="mt-3 font-heading text-4xl font-bold text-primary md:text-5xl">Health, safety and environmental responsibility</h2>
+          </AnimatedItem>
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <AnimatedItem className="rounded-2xl bg-primary p-7 text-white shadow-xl md:p-8">
+              <FiShield className="text-5xl text-accent" />
+              <h3 className="mt-5 font-heading text-2xl font-bold">Health &amp; Safety</h3>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {hsePolicy.map((item) => (
+                  <div key={item} className="flex gap-3 rounded-xl bg-white/5 p-4">
+                    <FiCheckCircle className="mt-1 shrink-0 text-accent" />
+                    <p className="text-sm leading-6 text-white/75">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedItem>
+            <AnimatedItem className="rounded-2xl border border-primary/10 bg-surface p-7 shadow-soft md:p-8">
+              <FiSun className="text-5xl text-accent" />
+              <h3 className="mt-5 font-heading text-2xl font-bold text-primary">Environmental Policy</h3>
+              <div className="mt-6 space-y-3">
+                {environmentalPolicy.map((item) => (
+                  <div key={item} className="flex gap-3 rounded-xl bg-white p-4">
+                    <FiCheckCircle className="mt-1 shrink-0 text-accent" />
+                    <p className="text-sm font-semibold leading-6 text-textDark/70">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedItem>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="section-pad bg-primary text-white">
+        <div className="container-page">
+          <AnimatedItem className="mx-auto max-w-4xl text-center">
+            <p className="font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">PDF Service Scope</p>
+            <h2 className="mt-3 font-heading text-4xl font-bold md:text-5xl">Engineering and execution capabilities</h2>
+            <p className="mx-auto mt-5 max-w-3xl leading-8 text-white/70">
+              AES supports complete solar and allied construction packages, from foundations and structural work through electrical completion, testing, and maintenance.
+            </p>
+          </AnimatedItem>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {engineeringExecutionServices.map((item) => (
+              <AnimatedItem key={item} className="flex gap-3 rounded-xl border border-white/10 bg-white/5 p-5">
+                <FiCheckCircle className="mt-1 shrink-0 text-xl text-accent" />
+                <p className="font-semibold leading-7 text-white/80">{item}</p>
+              </AnimatedItem>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="section-pad bg-white">
+        <div className="container-page grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <AnimatedItem>
+            <p className="font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">Piling Services</p>
+            <h2 className="mt-3 font-heading text-4xl font-bold leading-tight text-primary md:text-5xl">
+              Foundation support for projects of different sizes
+            </h2>
+            <p className="mt-5 leading-8 text-textDark/70">
+              Piling is a critical part of apartments, bridges, road infrastructure, harbour works, solar structures, and heavy foundations. AES undertakes piling, sheet piling, and special foundation work for both standard and complex site conditions.
+            </p>
+          </AnimatedItem>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {pilingServices.map((item, index) => (
+              <AnimatedItem key={item} className="flex min-h-32 gap-4 rounded-2xl border border-primary/10 bg-surface p-5 shadow-sm">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary font-heading font-extrabold text-accent">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <p className="self-center font-semibold leading-7 text-primary">{item}</p>
+              </AnimatedItem>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="section-pad bg-surface">
+        <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <AnimatedItem className="rounded-2xl bg-white p-8 shadow-soft lg:sticky lg:top-28">
+            <FiShield className="text-5xl text-accent" />
+            <p className="mt-6 font-heading text-sm font-bold uppercase tracking-[0.3em] text-accent">Quality Control</p>
+            <h2 className="mt-3 font-heading text-4xl font-bold text-primary">Testing and inspection</h2>
+            <p className="mt-5 leading-8 text-textDark/70">
+              AES follows documented quality procedures aligned with ISO system requirements. Inspection activities can be witnessed or certified by authorized third-party agencies according to project requirements.
+            </p>
+          </AnimatedItem>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {testingInspectionServices.map((item) => (
+              <AnimatedItem key={item} className="flex min-h-28 gap-3 rounded-xl bg-white p-5 shadow-sm">
+                <FiCheckCircle className="mt-1 shrink-0 text-xl text-accent" />
+                <p className="font-semibold leading-7 text-primary">{item}</p>
+              </AnimatedItem>
             ))}
           </div>
         </div>
