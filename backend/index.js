@@ -104,12 +104,12 @@ async function initializeDatabase() {
   }
 }
 
-// Database connection failure வந்தாலும் module crash ஆகாமல் log செய்யும்
+// Database connection failure 
 initializeDatabase().catch((error) => {
   console.error('MongoDB initialization failed:', error.message);
 });
 
-// Local computer-ல் மட்டும் server listen செய்யும்
+// Local computer server listen 
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
 
@@ -118,5 +118,5 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-// முக்கியம்: Vercel Express function export
+//  Vercel Express function export
 export default app;

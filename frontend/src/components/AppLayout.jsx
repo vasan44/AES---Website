@@ -65,14 +65,28 @@ function Navbar() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let frameId = 0;
+
+    const updateNavbar = () => {
+      const nextScrolled = window.scrollY > 24;
+      setScrolled((current) => current === nextScrolled ? current : nextScrolled);
+      frameId = 0;
+    };
+
+    const onScroll = () => {
+      if (!frameId) frameId = window.requestAnimationFrame(updateNavbar);
+    };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   const navBg = scrolled
-    ? 'bg-primary/95 shadow-xl backdrop-blur'
+    ? 'bg-primary shadow-xl'
     : 'bg-transparent';
 
   return (

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FiX, FiZoomIn, FiChevronLeft, FiChevronRight, FiImage, FiShield, FiTool, FiZap, FiHome, FiGrid } from 'react-icons/fi';
 import PageHeader from '../components/PageHeader.jsx';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
@@ -69,17 +69,24 @@ const cardVariants = {
 };
 
 const imageReveal = {
-  hidden: { opacity: 0, y: 64, scale: 0.94, filter: 'blur(10px)' },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: 'blur(0px)',
-    transition: { type: 'spring', stiffness: 180, damping: 24, mass: 0.8 },
-  },
+  hidden: ({ direction, reduceMotion }) => reduceMotion
+    ? {}
+    : {
+        x: direction * 28,
+      },
+  show: ({ reduceMotion }) => ({
+    x: 0,
+    transition: reduceMotion
+      ? { duration: 0.01 }
+      : {
+          duration: 0.32,
+          ease: [0.22, 1, 0.36, 1],
+        },
+  }),
 };
 
 export default function Media() {
+  const reduceMotion = useReducedMotion();
   const [lightbox, setLightbox] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState('All');
@@ -156,7 +163,7 @@ export default function Media() {
 
           <motion.div
             variants={cardVariants}
-            className="mb-10 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-primary/10 bg-white/80 p-3 shadow-soft backdrop-blur"
+            className="mb-10 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-primary/10 bg-white p-3 shadow-soft"
           >
             {galleryCategories.map((category) => (
               <button
@@ -190,12 +197,14 @@ export default function Media() {
                 <motion.div
                   key={item.title}
                   variants={imageReveal}
+                  custom={{
+                    direction: index % 2 === 0 ? -1 : 1,
+                    reduceMotion,
+                  }}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: false, amount: 0.24, margin: '0px 0px -80px 0px' }}
-                  layout
-                  transition={{ delay: Math.min(index * 0.035, 0.18) }}
-                  className={`flex ${
+                  viewport={{ once: true, amount: 0.05 }}
+                  className={`flex transform-gpu ${
                     (activeCategory === 'All' && [0, 6, 11].includes(index)) || (activeCategory !== 'All' && index === 0)
                       ? 'min-h-[430px] lg:col-span-2 lg:min-h-[520px]'
                       : 'min-h-[360px]'
@@ -311,17 +320,20 @@ export default function Media() {
 function WorksiteCard({ item, onClick, featured = false }) {
   return (
     <motion.button
-      whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+      transition={{ duration: 0.12 }}
       onClick={onClick}
-      className="group relative flex h-full w-full overflow-hidden rounded-xl border border-white/80 bg-primary text-left shadow-[0_18px_44px_rgba(14,26,61,0.10)] transition hover:border-accent hover:shadow-[0_26px_60px_rgba(14,26,61,0.16)]"
+      className="group relative flex h-full w-full overflow-hidden rounded-xl border border-white/80 bg-slate-200 text-left shadow-[0_12px_28px_rgba(14,26,61,0.10)] transition-colors duration-200 hover:border-accent"
     >
-      <img src={item.image} alt={item.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/55 to-primary/5 opacity-90 transition duration-500 group-hover:opacity-95" />
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/55 to-transparent" />
+      <img
+        src={item.image}
+        alt={item.title}
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/20 to-transparent" />
 
-      <span className="absolute left-4 top-4 rounded-full bg-accent px-4 py-1.5 font-heading text-xs font-bold text-primary shadow-md">
+      <span className="absolute left-4 top-4 rounded-full bg-accent px-4 py-1.5 font-heading text-xs font-bold text-primary shadow-md sm:left-5 sm:top-5">
         {item.category}
       </span>
       <span className="absolute right-4 top-4 grid h-10 w-10 translate-y-2 place-items-center rounded-full bg-white/15 text-xl text-white opacity-0 backdrop-blur transition group-hover:translate-y-0 group-hover:opacity-100">
@@ -329,12 +341,16 @@ function WorksiteCard({ item, onClick, featured = false }) {
       </span>
 
       <div className="relative mt-auto w-full p-5 sm:p-6">
-        <div className="rounded-xl bg-primary/70 p-4 shadow-[0_14px_34px_rgba(0,0,0,0.18)]">
-          <div className="mb-3 h-px w-14 bg-accent transition-all duration-300 group-hover:w-24" />
-          <h3 className={`font-heading font-bold leading-tight text-accent ${featured ? 'text-3xl' : 'text-xl'}`}>{item.title}</h3>
-          <p className="mt-2 max-w-xl text-sm font-semibold leading-6 text-white">{item.text}</p>
+        <div className="max-w-2xl">
+          <div className="mb-3 h-0.5 w-14 bg-accent transition-all duration-300 group-hover:w-20" />
+          <h3 className={`font-heading font-bold leading-tight text-accent ${featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}>
+            {item.title}
+          </h3>
+          <p className="mt-2 max-w-xl text-sm font-medium leading-5 text-white/90 sm:leading-6">
+            {item.text}
+          </p>
         </div>
-        <span className="mt-5 inline-flex translate-y-2 items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white opacity-0 backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/85 transition-colors group-hover:text-accent">
           <FiZoomIn />
           View photo
         </span>
