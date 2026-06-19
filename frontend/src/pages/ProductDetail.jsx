@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
+import LocalImage from '../components/LocalImage.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import { products } from '../data/siteData.js';
 
@@ -15,11 +16,13 @@ export default function ProductDetail() {
         <div className="container-page grid gap-10 lg:grid-cols-[180px_1fr_460px]">
           <AnimatedItem className="flex gap-4 overflow-x-auto lg:flex-col">
             {gallery.map((img, i) => (
-              <img key={i} src={img} alt="" className="h-28 w-40 shrink-0 rounded-xl object-cover" />
+              <LocalImage key={i} src={img} alt="" className="h-28 w-40 shrink-0 rounded-xl object-cover" />
             ))}
           </AnimatedItem>
           <AnimatedItem>
-            <img src={product.image} alt={product.name} className="h-[560px] w-full rounded-xl object-cover shadow-soft" />
+            <div className="aspect-[4/3] overflow-hidden rounded-xl bg-primary/10 shadow-soft">
+              <LocalImage src={product.image} alt={product.name} priority className="premium-image" />
+            </div>
           </AnimatedItem>
           <AnimatedItem>
             <h2 className="font-heading text-4xl font-bold text-primary">{product.name}</h2>

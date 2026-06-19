@@ -3,22 +3,43 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FiX, FiZoomIn, FiChevronLeft, FiChevronRight, FiImage, FiShield, FiTool, FiZap, FiHome, FiGrid } from 'react-icons/fi';
 import PageHeader from '../components/PageHeader.jsx';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
-import ws01 from '../assets/Worksite Gallery/solar-site-01.webp';
-import ws02 from '../assets/Worksite Gallery/solar-site-02.webp';
-import ws03 from '../assets/Worksite Gallery/solar-site-03.webp';
-import ws04 from '../assets/Worksite Gallery/solar-site-04.webp';
-import ws05 from '../assets/Worksite Gallery/solar-site-05.webp';
-import ws06 from '../assets/Worksite Gallery/solar-site-06.webp';
-import ws07 from '../assets/Worksite Gallery/solar-site-07.webp';
-import ws08 from '../assets/Worksite Gallery/solar-site-08.webp';
-import ws09 from '../assets/Worksite Gallery/solar-site-09.webp';
-import ws10 from '../assets/Worksite Gallery/solar-site-10.webp';
-import ws11 from '../assets/Worksite Gallery/solar-site-11.webp';
-import ws12 from '../assets/Worksite Gallery/solar-site-12.webp';
-import ws13 from '../assets/Worksite Gallery/solar-site-13.webp';
-import ws14 from '../assets/Worksite Gallery/solar-site-14.webp';
-import ws15 from '../assets/Worksite Gallery/solar-site-15.webp';
-import ws16 from '../assets/Worksite Gallery/solar-site-16.webp';
+import LocalImage from '../components/LocalImage.jsx';
+import { useCanHover, useIsMobile } from '../hooks/useMediaQuery.js';
+import ws01 from '../assets/images/gallery/solar-worksite-01.webp';
+import ws02 from '../assets/images/gallery/solar-worksite-02.webp';
+import ws03 from '../assets/images/gallery/solar-worksite-03.webp';
+import ws04 from '../assets/images/gallery/solar-worksite-04.webp';
+import ws05 from '../assets/images/gallery/solar-worksite-05.webp';
+import ws06 from '../assets/images/gallery/solar-worksite-06.webp';
+import ws07 from '../assets/images/gallery/solar-worksite-07.webp';
+import ws08 from '../assets/images/gallery/solar-worksite-08.webp';
+import ws09 from '../assets/images/gallery/solar-worksite-09.webp';
+import ws10 from '../assets/images/gallery/solar-worksite-10.webp';
+import ws11 from '../assets/images/gallery/solar-worksite-11.webp';
+import ws12 from '../assets/images/gallery/solar-worksite-12.webp';
+import ws13 from '../assets/images/gallery/solar-worksite-13.webp';
+import ws14 from '../assets/images/gallery/solar-worksite-14.webp';
+import ws15 from '../assets/images/gallery/solar-worksite-15.webp';
+import ws16 from '../assets/images/gallery/solar-worksite-16.webp';
+import ws17 from '../assets/images/gallery/solar-worksite-17.webp';
+import ws18 from '../assets/images/gallery/solar-worksite-18.webp';
+import ws19 from '../assets/images/gallery/solar-worksite-19.webp';
+import ws20 from '../assets/images/gallery/solar-worksite-20.webp';
+import ws21 from '../assets/images/gallery/solar-worksite-21.webp';
+import ws22 from '../assets/images/gallery/solar-worksite-22.webp';
+import ws23 from '../assets/images/gallery/solar-worksite-23.webp';
+import ws24 from '../assets/images/gallery/solar-worksite-24.webp';
+import ws25 from '../assets/images/gallery/solar-worksite-25.webp';
+import ws26 from '../assets/images/gallery/solar-worksite-26.webp';
+import ws27 from '../assets/images/gallery/solar-worksite-27.webp';
+import ws28 from '../assets/images/gallery/solar-worksite-28.webp';
+import ws29 from '../assets/images/gallery/solar-worksite-29.webp';
+import ws30 from '../assets/images/gallery/solar-worksite-30.webp';
+import ws31 from '../assets/images/gallery/solar-worksite-31.webp';
+import ws32 from '../assets/images/gallery/solar-worksite-32.webp';
+import ws33 from '../assets/images/gallery/solar-worksite-33.webp';
+import ws34 from '../assets/images/gallery/solar-worksite-34.webp';
+import ws35 from '../assets/images/gallery/solar-worksite-35.webp';
 
 const siteModels = [
   { icon: FiHome, title: 'Home Rooftop Solar', text: 'Terrace and house rooftop systems for daily home load and electricity bill reduction.' },
@@ -29,22 +50,41 @@ const siteModels = [
 ];
 
 const worksiteGallery = [
-  { title: 'Site Team Briefing', category: 'Workers', image: ws01, text: 'Crew alignment before solar mounting work.' },
-  { title: 'Panel Room Check', category: 'Labour Team', image: ws02, text: 'Electrical room inspection and access planning.' },
-  { title: 'Ground Solar Layout', category: 'Site Work', image: ws03, text: 'Open-site panel rows planned for clear generation.' },
-  { title: 'Meter Panel Setup', category: 'Electrical Work', image: ws04, text: 'Protection panel wiring and meter support.' },
-  { title: 'Solar Field Cleaning', category: 'Maintenance', image: ws05, text: 'Panel cleaning for steady daily output.' },
-  { title: 'Structure Fabrication', category: 'Acre Land', image: ws06, text: 'Ground structure fixing for acre-land solar.' },
-  { title: 'Transformer Yard Work', category: 'Electrical Work', image: ws07, text: 'Cable routing near transformer and control area.' },
-  { title: 'Rooftop Structure Work', category: 'Site Work', image: ws08, text: 'Mounting frame alignment before panel fixing.' },
-  { title: 'Inverter Wiring', category: 'Electrical Work', image: ws09, text: 'Inverter and DB wiring with safety checks.' },
-  { title: 'Land Mounting Work', category: 'Acre Land', image: ws10, text: 'Steel frame setup for ground-mounted panels.' },
-  { title: 'Worker Safety Check', category: 'Workers', image: ws11, text: 'Safety coordination before site execution.' },
-  { title: 'Cable Tray Setup', category: 'Labour Team', image: ws12, text: 'Cable tray fixing for neat DC routing.' },
-  { title: 'Panel Row Alignment', category: 'Site Work', image: ws13, text: 'Final tilt and row alignment inspection.' },
-  { title: 'Generation Inspection', category: 'Maintenance', image: ws14, text: 'System health check after installation.' },
-  { title: 'Farm Solar Support', category: 'Acre Land', image: ws15, text: 'Farm-side structure work for daytime loads.' },
-  { title: 'Final Commissioning', category: 'Site Work', image: ws16, text: 'Testing, handover, and system startup.' },
+  { title: 'Worksite Photo 01', category: 'Site Work', image: ws01, text: 'Solar project site execution view.' },
+  { title: 'Worksite Photo 02', category: 'Site Work', image: ws02, text: 'On-site solar installation progress.' },
+  { title: 'Worksite Photo 03', category: 'Site Work', image: ws03, text: 'Field team worksite documentation.' },
+  { title: 'Worksite Photo 04', category: 'Electrical Work', image: ws04, text: 'Electrical and DC worksite activity.' },
+  { title: 'Worksite Photo 05', category: 'Civil & Structure', image: ws05, text: 'Civil and structure work at solar site.' },
+  { title: 'Worksite Photo 06', category: 'Civil & Structure', image: ws06, text: 'Foundation and mounting support work.' },
+  { title: 'Worksite Photo 07', category: 'Electrical Work', image: ws07, text: 'Electrical routing and site coordination.' },
+  { title: 'Worksite Photo 08', category: 'Site Work', image: ws08, text: 'Solar field layout and execution view.' },
+  { title: 'Worksite Photo 09', category: 'Electrical Work', image: ws09, text: 'Panel and cable work documentation.' },
+  { title: 'Worksite Photo 10', category: 'Civil & Structure', image: ws10, text: 'Ground-mounted structure preparation.' },
+  { title: 'Worksite Photo 11', category: 'Site Work', image: ws11, text: 'Worksite progress at solar project area.' },
+  { title: 'Worksite Photo 12', category: 'Electrical Work', image: ws12, text: 'Electrical installation and routing work.' },
+  { title: 'Worksite Photo 13', category: 'Civil & Structure', image: ws13, text: 'Solar support structure and site activity.' },
+  { title: 'Worksite Photo 14', category: 'Maintenance', image: ws14, text: 'Inspection and maintenance support view.' },
+  { title: 'Worksite Photo 15', category: 'Site Work', image: ws15, text: 'Solar plant worksite overview.' },
+  { title: 'Worksite Photo 16', category: 'Civil & Structure', image: ws16, text: 'Civil work and mounting area progress.' },
+  { title: 'Worksite Photo 17', category: 'Electrical Work', image: ws17, text: 'Solar electrical work execution.' },
+  { title: 'Worksite Photo 18', category: 'Site Work', image: ws18, text: 'Project site activity and progress.' },
+  { title: 'Worksite Photo 19', category: 'Maintenance', image: ws19, text: 'System inspection and worksite check.' },
+  { title: 'Worksite Photo 20', category: 'Civil & Structure', image: ws20, text: 'Solar structure worksite documentation.' },
+  { title: 'Worksite Photo 21', category: 'Electrical Work', image: ws21, text: 'Electrical project worksite view.' },
+  { title: 'Worksite Photo 22', category: 'Site Work', image: ws22, text: 'Solar field execution and work progress.' },
+  { title: 'Worksite Photo 23', category: 'Civil & Structure', image: ws23, text: 'Ground work and structure alignment.' },
+  { title: 'Worksite Photo 24', category: 'Electrical Work', image: ws24, text: 'Electrical panel and site activity.' },
+  { title: 'Worksite Photo 25', category: 'Maintenance', image: ws25, text: 'Site inspection and maintenance work.' },
+  { title: 'Worksite Photo 26', category: 'Civil & Structure', image: ws26, text: 'Solar mounting structure progress.' },
+  { title: 'Worksite Photo 27', category: 'Site Work', image: ws27, text: 'Worksite overview and installation activity.' },
+  { title: 'Worksite Photo 28', category: 'Site Work', image: ws28, text: 'Solar project field documentation.' },
+  { title: 'Worksite Photo 29', category: 'Electrical Work', image: ws29, text: 'Electrical work and cable routing.' },
+  { title: 'Worksite Photo 30', category: 'Civil & Structure', image: ws30, text: 'Structure setup and field progress.' },
+  { title: 'Worksite Photo 31', category: 'Site Work', image: ws31, text: 'Project execution at solar site.' },
+  { title: 'Worksite Photo 32', category: 'Maintenance', image: ws32, text: 'Solar site inspection support.' },
+  { title: 'Worksite Photo 33', category: 'Electrical Work', image: ws33, text: 'Electrical installation worksite view.' },
+  { title: 'Worksite Photo 34', category: 'Civil & Structure', image: ws34, text: 'Mounting and structural worksite progress.' },
+  { title: 'Worksite Photo 35', category: 'Site Work', image: ws35, text: 'Final solar project site view.' },
 ];
 
 const galleryCategories = ['All', ...Array.from(new Set(worksiteGallery.map((item) => item.category)))];
@@ -69,22 +109,20 @@ const cardVariants = {
 };
 
 const imageReveal = {
-  hidden: ({ direction, reduceMotion }) => reduceMotion
+  hidden: ({ reduceMotion, isMobile }) => reduceMotion
     ? {}
     : {
         opacity: 0,
-        x: direction * 28,
-        y: 18,
+        y: isMobile ? 10 : 16,
       },
-  show: ({ order, reduceMotion }) => ({
+  show: ({ order, reduceMotion, isMobile }) => ({
     opacity: 1,
-    x: 0,
     y: 0,
     transition: reduceMotion
       ? { duration: 0.01 }
       : {
-          duration: 0.42,
-          delay: order * 0.1,
+          duration: isMobile ? 0.22 : 0.34,
+          delay: isMobile ? 0 : order * 0.045,
           ease: [0.22, 1, 0.36, 1],
         },
   }),
@@ -92,6 +130,7 @@ const imageReveal = {
 
 export default function Media() {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const [lightbox, setLightbox] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState('All');
@@ -131,7 +170,7 @@ export default function Media() {
       {/* ── Worksite gallery ──────────────────────────────────────────── */}
       <motion.section
         className="relative overflow-hidden bg-[linear-gradient(180deg,#f8fafc_0%,#eef3f8_52%,#ffffff_100%)] py-16 md:py-24"
-        initial="hidden"
+        initial={reduceMotion || isMobile ? false : 'hidden'}
         whileInView="show"
         viewport={{ once: true, amount: 0.02 }}
       >
@@ -195,7 +234,7 @@ export default function Media() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.22 }}
+              transition={{ duration: reduceMotion ? 0.01 : isMobile ? 0.14 : 0.22 }}
               className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
             >
               {visibleGallery.map((item, index) => (
@@ -203,22 +242,19 @@ export default function Media() {
                   key={item.title}
                   variants={imageReveal}
                   custom={{
-                    direction: index % 2 === 0 ? -1 : 1,
                     order: index % 3,
                     reduceMotion,
+                    isMobile,
                   }}
-                  initial="hidden"
+                  initial={reduceMotion || isMobile ? false : 'hidden'}
                   whileInView="show"
-                  viewport={{ once: true, amount: 0.05 }}
-                  className={`flex transform-gpu ${
-                    (activeCategory === 'All' && [0, 6, 11].includes(index)) || (activeCategory !== 'All' && index === 0)
-                      ? 'min-h-[420px] lg:col-span-2 lg:min-h-[500px]'
-                      : 'min-h-[340px]'
-                  }`}
+                  viewport={{ once: true, amount: 0.08, margin: '0px 0px -6% 0px' }}
+                  className="gallery-card-optimized flex aspect-[4/3]"
                 >
                   <WorksiteCard
                     item={item}
                     featured={(activeCategory === 'All' && [0, 6, 11].includes(index)) || (activeCategory !== 'All' && index === 0)}
+                    priority={index < 2}
                     onClick={() => openLightbox(item.image)}
                   />
                 </motion.div>
@@ -290,9 +326,10 @@ export default function Media() {
               className="max-w-[88vw]"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <LocalImage
                 src={lightbox}
                 alt={activeItem?.title || ''}
+                priority
                 className="max-h-[78vh] w-full rounded-xl object-contain shadow-2xl ring-1 ring-white/10"
               />
               {activeItem && (
@@ -323,31 +360,29 @@ export default function Media() {
   );
 }
 
-function WorksiteCard({ item, onClick, featured = false }) {
+function WorksiteCard({ item, onClick, featured = false, priority = false }) {
+  const canHover = useCanHover();
   return (
-    <motion.button
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.12 }}
+    <button
       onClick={onClick}
-      className="group relative flex h-full w-full overflow-hidden rounded-2xl border border-white/80 bg-slate-200 text-left shadow-[0_12px_28px_rgba(14,26,61,0.10)] transition-colors duration-300 hover:border-accent"
+      className="group relative flex h-full w-full overflow-hidden rounded-2xl border border-white/80 bg-slate-200 text-left shadow-[0_12px_28px_rgba(14,26,61,0.10)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-xl active:scale-[0.99]"
     >
-      <img
+      <LocalImage
         src={item.image}
         alt={item.title}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
+        priority={priority}
+        className={`premium-image absolute inset-0 ${canHover ? '' : '!transform-none'}`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/35 to-transparent" />
+      <div className="premium-image-overlay absolute inset-0 z-10" />
 
-      <span className="absolute left-4 top-4 rounded-full bg-accent px-4 py-1.5 font-heading text-xs font-bold text-primary shadow-md sm:left-5 sm:top-5">
+      <span className="absolute left-4 top-4 z-20 rounded-full bg-accent px-4 py-1.5 font-heading text-xs font-bold text-primary shadow-md sm:left-5 sm:top-5">
         {item.category}
       </span>
-      <span className="absolute right-4 top-4 grid h-10 w-10 translate-y-2 place-items-center rounded-full bg-white/15 text-xl text-white opacity-0 backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+      <span className="absolute right-4 top-4 z-20 grid h-10 w-10 translate-y-2 place-items-center rounded-full bg-white/15 text-xl text-white opacity-0 backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
         <FiZoomIn />
       </span>
 
-      <div className="relative mt-auto w-full p-5 sm:p-6">
+      <div className="relative z-20 mt-auto w-full p-5 sm:p-6">
         <div className="max-w-2xl">
           <div className="mb-3 h-0.5 w-14 bg-accent transition-all duration-300 group-hover:w-20" />
           <h3 className={`font-heading font-bold leading-tight text-accent ${featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}>
@@ -362,14 +397,15 @@ function WorksiteCard({ item, onClick, featured = false }) {
           View photo
         </span>
       </div>
-    </motion.button>
+    </button>
   );
 }
 
 function SiteModelCard({ Icon, title, text }) {
+  const canHover = useCanHover();
   return (
     <motion.div
-      whileHover={{ y: -7 }}
+      whileHover={canHover ? { y: -7 } : undefined}
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
       className="group flex w-full flex-col rounded-xl border border-primary/10 bg-surface p-6 shadow-soft transition-colors hover:border-accent hover:bg-white"
     >

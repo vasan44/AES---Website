@@ -1,35 +1,26 @@
-import { motion } from 'framer-motion';
-
-const sectionVariants = {
-  hidden: { opacity: 1 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.04,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
+import { motion, useReducedMotion } from 'framer-motion';
+import { useIsMobile } from '../hooks/useMediaQuery.js';
 
 export default function AnimatedSection({ children, className = '', style }) {
+  const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const sectionVariants = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: reduceMotion ? 0 : isMobile ? 0.035 : 0.1,
+        delayChildren: reduceMotion ? 0 : isMobile ? 0.01 : 0.04,
+      },
+    },
+  };
+
   return (
     <motion.section
       className={className}
       style={style}
       variants={sectionVariants}
-      initial="hidden"
+      initial={reduceMotion || isMobile ? false : 'hidden'}
       whileInView="show"
       viewport={{ once: true, amount: 0 }}
     >
@@ -39,12 +30,26 @@ export default function AnimatedSection({ children, className = '', style }) {
 }
 
 export function AnimatedItem({ children, className = '', style }) {
+  const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const itemVariants = {
+    hidden: reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: isMobile ? 12 : 28 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduceMotion ? 0.01 : isMobile ? 0.28 : 0.55,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
     <motion.div
       className={className}
       style={style}
       variants={itemVariants}
-      initial="hidden"
+      initial={reduceMotion || isMobile ? false : 'hidden'}
       whileInView="show"
       viewport={{ once: true, amount: 0 }}
     >

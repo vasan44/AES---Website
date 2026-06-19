@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useIsMobile } from '../hooks/useMediaQuery.js';
 
 import defaultBg from '../assets/header/services.png';
 import aboutBg from '../assets/header/about.png';
@@ -26,6 +27,11 @@ const bgMap = {
 
 export default function PageHeader({ title }) {
   const { d: bg, m: mobileBg } = bgMap[title] || { d: defaultBg, m: mDefaultBg };
+  const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const distance = isMobile ? 10 : 24;
+  const duration = reduceMotion ? 0.01 : isMobile ? 0.32 : 0.65;
+
   return (
     <header className="relative h-[400px] overflow-hidden bg-primary text-white">
       <picture>
@@ -40,23 +46,23 @@ export default function PageHeader({ title }) {
       <div className="absolute inset-x-0 bottom-0 h-1 bg-accent" />
       <motion.div
         className="container-page relative z-10 flex h-full flex-col justify-center pt-20"
-        initial={{ opacity: 0, y: 24 }}
+        initial={reduceMotion || isMobile ? false : { opacity: 0, y: distance }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.p
           className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-accent"
-          initial={{ opacity: 0, x: -18 }}
+          initial={reduceMotion || isMobile ? false : { opacity: 0, x: isMobile ? -8 : -18 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: reduceMotion ? 0.01 : isMobile ? 0.28 : 0.55, delay: reduceMotion ? 0 : isMobile ? 0.02 : 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
           <Link to="/">Home</Link> &gt; {title}
         </motion.p>
         <motion.h1
           className="font-heading text-4xl font-bold sm:text-5xl md:text-6xl"
-          initial={{ opacity: 0, y: 18 }}
+          initial={reduceMotion || isMobile ? false : { opacity: 0, y: isMobile ? 8 : 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: reduceMotion ? 0.01 : isMobile ? 0.3 : 0.6, delay: reduceMotion ? 0 : isMobile ? 0.04 : 0.16, ease: [0.22, 1, 0.36, 1] }}
         >
           {title}
         </motion.h1>

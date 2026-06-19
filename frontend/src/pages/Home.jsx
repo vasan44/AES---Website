@@ -13,21 +13,22 @@ import {
 } from 'react-icons/fi';
 import AnimatedCounter from '../components/AnimatedCounter.jsx';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
+import LocalImage from '../components/LocalImage.jsx';
 import StarRating from '../components/StarRating.jsx';
 import {
   certifications, counters, engineeringTeam, images, impactCards, partners, socials,
 } from '../data/siteData.js';
 import heroVideoSrc    from '../assets/videos/solar-hero.mp4';
 import capacityVideoSrc from '../assets/videos/capacity-bg.mp4';
-import svcImg1 from '../assets/services/services1.png';
-import svcImg2 from '../assets/services/services2.png';
-import svcImg3 from '../assets/services/services3.png';
-import prodHome       from '../assets/products/home.png';
-import prodCommercial from '../assets/products/comercial.jpg';
-import prodIndustrial from '../assets/products/interical.png';
-import svcImg4 from '../assets/services/sevices4.png';
-import svcImg5 from '../assets/services/services5.png';
-import svcImg6 from '../assets/services/services6.png';
+import svcImg1 from '../assets/images/services/residential-solar-service.webp';
+import svcImg2 from '../assets/images/services/commercial-solar-service.webp';
+import svcImg3 from '../assets/images/services/solar-plant-installation.webp';
+import prodHome from '../assets/images/portfolio/home-solar.webp';
+import prodCommercial from '../assets/images/portfolio/commercial-solar.webp';
+import prodIndustrial from '../assets/images/portfolio/industrial-solar.webp';
+import svcImg4 from '../assets/images/services/power-systems-service.webp';
+import svcImg5 from '../assets/images/services/net-metering-support.webp';
+import svcImg6 from '../assets/images/services/solar-maintenance-service.webp';
 
 const homeServices = [
   { icon: FiHome,            badge: 'Home Solar',      img: svcImg1, title: 'Residential Installation',        text: 'Rooftop solar setup for homes with site survey, structure fixing, panel mounting, inverter setup, and commissioning.',                                                              tags: ['Site Survey', 'Mounting', 'Commissioning'] },
@@ -256,9 +257,9 @@ function ServicesSection() {
             <AnimatedItem key={title} className="h-full">
               <div className="group flex h-full min-h-[500px] flex-col overflow-hidden rounded-xl bg-primary shadow-soft transition duration-300 hover:-translate-y-2 hover:shadow-xl">
                 {/* Card image */}
-                <div className="relative h-52 w-full shrink-0 overflow-hidden">
-                  <img src={img} alt={title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-primary/30" />
+                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-primary/10">
+                  <LocalImage src={img} alt={title} className="premium-image" />
+                  <div className="absolute inset-0 bg-primary/20" />
                   {/* Badge */}
                   <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 font-heading text-xs font-bold text-primary">
                     {badge}
@@ -336,7 +337,7 @@ function BestSolarFit() {
 
                 <div className="relative h-72 overflow-hidden sm:h-96 lg:h-auto lg:min-h-[520px] lg:p-5">
                   <div className="h-full overflow-hidden lg:rounded-xl">
-                    <img src={img} alt={title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    <LocalImage src={img} alt={title} className="premium-image" />
                   </div>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent lg:hidden" />
                 </div>

@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import AnimatedSection, { AnimatedItem } from '../components/AnimatedSection.jsx';
+import LocalImage from '../components/LocalImage.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import {
   engineeringExecutionServices,
@@ -19,12 +20,12 @@ import {
   pilingServices,
   testingInspectionServices,
 } from '../data/siteData.js';
-import svc1 from '../assets/services/services1.png';
-import svc2 from '../assets/services/services2.png';
-import svc3 from '../assets/services/services3.png';
-import svc4 from '../assets/services/inter.png';
-import svc5 from '../assets/services/services5.png';
-import svc6 from '../assets/services/services6.png';
+import svc1 from '../assets/images/services/residential-solar-service.webp';
+import svc2 from '../assets/images/services/commercial-solar-service.webp';
+import svc3 from '../assets/images/services/solar-plant-installation.webp';
+import svc4 from '../assets/images/services/industrial-solar-service.webp';
+import svc5 from '../assets/images/services/net-metering-support.webp';
+import svc6 from '../assets/images/services/solar-maintenance-service.webp';
 
 const solarServices = [
   {
@@ -98,7 +99,7 @@ export default function Products() {
 
           <div className="mt-14 grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3">
             {solarServices.map((service, index) => (
-              <ServiceCard key={service.title} service={service} number={index + 1} />
+              <ServiceCard key={service.title} service={service} number={index + 1} priority={index < 3} />
             ))}
           </div>
         </div>
@@ -253,7 +254,7 @@ export default function Products() {
   );
 }
 
-function ServiceCard({ service, number }) {
+function ServiceCard({ service, number, priority = false }) {
   const Icon = service.icon;
   return (
     <AnimatedItem className="h-full">
@@ -266,22 +267,19 @@ function ServiceCard({ service, number }) {
         <span className="absolute right-5 top-5 z-20 rounded-full bg-white/90 px-3 py-1 font-heading text-sm font-extrabold text-primary shadow-lg">
           {String(number).padStart(2, '0')}
         </span>
-        <div className="relative h-56 overflow-hidden">
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary/75 via-primary/15 to-transparent" />
+        <div className="relative aspect-[4/3] overflow-hidden bg-primary/10">
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary/65 via-primary/10 to-transparent" />
           <motion.div
             className="absolute bottom-5 left-5 z-20 grid h-14 w-14 place-items-center rounded-xl bg-accent text-2xl text-primary shadow-xl shadow-primary/25"
             whileHover={{ rotate: -6, scale: 1.08 }}
           >
             <Icon />
           </motion.div>
-          <motion.img
+          <LocalImage
             src={service.image}
             alt={`${service.title} service`}
-            initial={{ scale: 1.12 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="h-full w-full object-cover group-hover:scale-110 transition duration-700"
+            priority={priority}
+            className="premium-image"
           />
         </div>
         <div className="flex flex-1 flex-col p-7">

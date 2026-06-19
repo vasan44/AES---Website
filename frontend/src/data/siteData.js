@@ -10,28 +10,39 @@ import imgFactory     from '../assets/services/services3.png';
 import imgAbout       from '../assets/about/about.png';
 
 // ── products ─────────────────────────────────────────────────────────────────
-import imgHomeProduct       from '../assets/products/home.png';
-import imgCommercialProduct from '../assets/products/comercial.jpg';
-import imgIndustrialProduct from '../assets/products/interical.png';
+import imgHomeProduct from '../assets/images/portfolio/home-solar.webp';
+import imgCommercialProduct from '../assets/images/portfolio/commercial-solar.webp';
+import imgIndustrialProduct from '../assets/images/portfolio/industrial-solar.webp';
 
 // ── projects ─────────────────────────────────────────────────────────────────
-import imgRes1  from '../assets/Residential/1.png';
-import imgRes2  from '../assets/Residential/2.png';
-import imgRes3  from '../assets/Residential/3.jpg';
-import imgRes5  from '../assets/Residential/4.png';
-import imgCom1  from '../assets/Worksite Gallery/solar-site-01.webp';
-import imgCom2  from '../assets/Worksite Gallery/solar-site-02.webp';
-import imgCom4  from '../assets/Worksite Gallery/solar-site-03.webp';
-import imgCom5  from '../assets/Worksite Gallery/solar-site-04.webp';
-import imgInd1  from '../assets/Worksite Gallery/solar-site-05.webp';
-import imgInd2  from '../assets/Worksite Gallery/solar-site-06.webp';
-import imgInd3  from '../assets/Worksite Gallery/solar-site-07.webp';
-import imgInd4  from '../assets/Worksite Gallery/solar-site-08.webp';
-import imgInst1 from '../assets/Worksite Gallery/solar-site-09.webp';
-import imgInst2 from '../assets/Worksite Gallery/solar-site-10.webp';
-import imgInst3 from '../assets/Worksite Gallery/solar-site-11.webp';
-import imgInst4 from '../assets/Worksite Gallery/solar-site-12.webp';
-import imgEpc   from '../assets/EPC.png';
+import imgProject1 from '../assets/images/projects/karaikudi-30mw-dc-work.webp';
+import imgProject6 from '../assets/images/projects/kariyapatti-2mw-piling-work.webp';
+import imgProject7 from '../assets/images/projects/kovilpatti-solar-project.webp';
+import imgProject9 from '../assets/images/projects/chittoor-25mw-dc-work.webp';
+import imgProject15 from '../assets/images/projects/rampura-solar-work.webp';
+import imgProject17 from '../assets/images/projects/pandalkudi-inverter-room-work.webp';
+import imgProject18 from '../assets/images/projects/ettaiyapuram-complete-ic-work.webp';
+import imgProject21 from '../assets/images/projects/trichy-guest-house-water-tank.webp';
+import imgProject24 from '../assets/images/projects/karaikal-civil-project.webp';
+import imgProjectComplete1 from '../assets/images/projects/kariyapatti-dc-mms-work.webp';
+import imgProjectComplete2 from '../assets/images/projects/ettaiyapuram-ntpc-dc-mms-work.webp';
+import imgProjectComplete3 from '../assets/images/projects/kovilpatti-complete-solar-plant.webp';
+import imgProjectComplete4 from '../assets/images/projects/mysore-rishi-solar-project.webp';
+import imgProjectComplete5 from '../assets/images/projects/begur-complete-ic-work.webp';
+import imgProjectOm1 from '../assets/images/projects/begur-solar-om.webp';
+import imgProjectOm2 from '../assets/images/projects/mysore-solar-om.webp';
+import imgProjectCivil1 from '../assets/images/projects/karaikudi-fencing-work.webp';
+import imgProjectCivil2 from '../assets/images/projects/ottapidaram-fencing-work.webp';
+import imgProjectCivil3 from '../assets/images/projects/thachur-equipment-foundation-work.webp';
+import imgProjectCivil4 from '../assets/images/projects/arani-equipment-foundation-work.webp';
+import imgProjectCivil5 from '../assets/images/projects/thachur-piling-work.webp';
+import imgProjectDc1 from '../assets/images/projects/trichy-solar-epc-project.webp';
+import imgProjectDc2 from '../assets/images/projects/dindigul-electrical-dc-work.webp';
+import imgProjectDc3 from '../assets/images/projects/manaparai-7-5mw-dc-work.webp';
+import imgProjectDc4 from '../assets/images/projects/narimanam-chain-link-fencing.webp';
+import imgProjectEarthing from '../assets/images/projects/kasaragod-grid-earthing-work.webp';
+import imgProjectLighting from '../assets/images/projects/karaikudi-street-light-work.webp';
+import imgProjectSolar15 from '../assets/images/projects/kariyapatti-12mw-piling-work.webp';
 
 // ── blog ─────────────────────────────────────────────────────────────────────
 import imgBlogRooftop  from '../assets/blog/solar-rooftop-basics.svg';
@@ -441,7 +452,7 @@ export const projects = [
     title: '30 MW – DC work',
     location: 'Karaikudi',
     capacity: '30 MW',
-    image: imgCom1,
+    image: imgProject1,
     scope: 'Documented DC electrical scope for Prozeal Infra at the Karaikudi solar site.',
     status: '2019',
     client: 'Prozeal Infra',
@@ -451,7 +462,7 @@ export const projects = [
     title: 'Fencing work',
     location: 'Karaikudi',
     capacity: 'Site work',
-    image: imgInd2,
+    image: imgProjectCivil1,
     scope: 'Solar site fencing scope executed for Prozeal Infra at Karaikudi.',
     status: '2019',
     client: 'Prozeal Infra',
@@ -461,7 +472,7 @@ export const projects = [
     title: 'Street-light work',
     location: 'Karaikudi',
     capacity: 'Lighting',
-    image: imgInst4,
+    image: imgProjectLighting,
     scope: 'Street-light installation work completed for Prozeal Infra at the Karaikudi project site.',
     status: '2019',
     client: 'Prozeal Infra',
@@ -471,7 +482,7 @@ export const projects = [
     title: 'Grid earthing work',
     location: 'Kasaragod, Kerala',
     capacity: 'Earthing',
-    image: imgInd1,
+    image: imgProjectEarthing,
     scope: 'Grid earthing work documented for Tata Power Solar at Kasaragod, Kerala.',
     status: '2020',
     client: 'Tata Power Solar',
@@ -481,7 +492,7 @@ export const projects = [
     title: 'Electrical DC work',
     location: 'Dindigul',
     capacity: 'DC work',
-    image: imgCom2,
+    image: imgProjectDc2,
     scope: 'Electrical DC work completed for Clean Max at the Dindigul solar project site.',
     status: '2020',
     client: 'Clean Max',
@@ -491,7 +502,7 @@ export const projects = [
     title: '2 MW piling work',
     location: 'Kariyapatti',
     capacity: '2 MW',
-    image: imgInd3,
+    image: imgProject6,
     scope: 'Piling work for Solar Care at the 2 MW Kariyapatti solar site.',
     status: '2021',
     client: 'Solar Care',
@@ -501,7 +512,7 @@ export const projects = [
     title: '2.5 MW piling, MMS, DC activity, inverter room and fencing',
     location: 'Kovilpatti',
     capacity: '2.5 MW',
-    image: imgCom4,
+    image: imgProject7,
     scope: 'Combined piling, MMS, DC activity, inverter room, and fencing works for Prozeal Infra.',
     status: '2021',
     client: 'Prozeal Infra',
@@ -511,7 +522,7 @@ export const projects = [
     title: '12 MW piling work',
     location: 'Kariyapatti',
     capacity: '12 MW',
-    image: imgInd4,
+    image: imgProjectSolar15,
     scope: 'Piling work documented for Solar Care at the 12 MW Kariyapatti solar project.',
     status: '2021',
     client: 'Solar Care',
@@ -521,7 +532,7 @@ export const projects = [
     title: '25 MW DC work',
     location: 'Chittoor, Andhra Pradesh',
     capacity: '25 MW',
-    image: imgCom5,
+    image: imgProject9,
     scope: 'DC work completed for Amara Raja Power Systems Pvt. Ltd. at Chittoor, Andhra Pradesh.',
     status: '2022',
     client: 'Amara Raja Power Systems Pvt. Ltd.',
@@ -531,7 +542,7 @@ export const projects = [
     title: '2.5 MW DC and MMS work',
     location: 'Kariyapatti',
     capacity: '2.5 MW',
-    image: imgInst1,
+    image: imgProjectComplete1,
     scope: 'DC and module mounting structure work executed for Solar Care at Kariyapatti.',
     status: '2022',
     client: 'Solar Care',
@@ -541,7 +552,7 @@ export const projects = [
     title: '7.5 MW DC work',
     location: 'Manaparai',
     capacity: '7.5 MW',
-    image: imgRes1,
+    image: imgProjectDc3,
     scope: 'DC electrical work completed for Everrenew at the Manaparai solar site.',
     status: '2022',
     client: 'Everrenew',
@@ -551,7 +562,7 @@ export const projects = [
     title: 'L&T NTPC plant: 18 MW DC & MMS work and 1.5 km drainage',
     location: 'Ettaiyapuram',
     capacity: '18 MW',
-    image: imgInst2,
+    image: imgProjectComplete2,
     scope: 'DC, MMS, and 1.5 km drainage scope documented for L&T at the NTPC plant.',
     status: '2022',
     client: 'L&T',
@@ -561,7 +572,7 @@ export const projects = [
     title: '1.4 MW complete solar plant construction',
     location: 'Kovilpatti',
     capacity: '1.4 MW',
-    image: imgRes2,
+    image: imgProjectComplete3,
     scope: 'Complete solar plant construction for Adithya Rays Power Pvt. Ltd. at Kovilpatti.',
     status: '2022',
     client: 'Adithya Rays Power Pvt. Ltd.',
@@ -571,7 +582,7 @@ export const projects = [
     title: '4 MW Rishi solar plant – complete construction works',
     location: 'Mysore, Karnataka',
     capacity: '4 MW',
-    image: imgInst3,
+    image: imgProjectComplete4,
     scope: 'Complete construction works for the Rishi solar plant, executed for Prozeal Infra.',
     status: '2022',
     client: 'Prozeal Infra',
@@ -581,7 +592,7 @@ export const projects = [
     title: '4 MW piling, MMS, AC/DC work and street lighting',
     location: 'Rampura, Karnataka',
     capacity: '4 MW',
-    image: imgRes3,
+    image: imgProject15,
     scope: 'Piling, MMS, AC/DC works, and street lighting completed for Everrenew at Rampura.',
     status: '2022',
     client: 'Everrenew',
@@ -591,7 +602,7 @@ export const projects = [
     title: '3.5 km fencing work on a 25 MW solar plant',
     location: 'Ottapidaram',
     capacity: '25 MW',
-    image: imgInd2,
+    image: imgProjectCivil2,
     scope: '3.5 km fencing scope documented on a 25 MW solar plant for Prozeal Infra.',
     status: '2023',
     client: 'Prozeal Infra',
@@ -601,7 +612,7 @@ export const projects = [
     title: 'Inverter room, ICOG panel room, transformer foundation and fencing',
     location: 'Pandalkudi',
     capacity: '5.5 MW',
-    image: imgInd1,
+    image: imgProject17,
     scope: 'Inverter room, ICOG panel room, transformer foundation, and fencing on a 5.5 MW plant for DK Solar.',
     status: '2023',
     client: 'DK Solar',
@@ -611,7 +622,7 @@ export const projects = [
     title: '18.46 MW piling, MMS, module mounting, AC/DC, civil foundations and equipment erection',
     location: 'Ettaiyapuram',
     capacity: '18.46 MW',
-    image: imgCom1,
+    image: imgProject18,
     scope: 'Piling, MMS, module mounting, AC/DC, civil foundations, and equipment erection for Everrenew.',
     status: '2023',
     client: 'Everrenew',
@@ -621,7 +632,7 @@ export const projects = [
     title: '12 MW complete I&C works including civil rooms, MCS, fencing and street lights',
     location: 'Begur, Karnataka',
     capacity: '12 MW',
-    image: imgCom2,
+    image: imgProjectComplete5,
     scope: 'Complete I&C scope including civil rooms, MCS, fencing, and street lights for Prozeal Infra.',
     status: '2024',
     client: 'Prozeal Infra',
@@ -631,7 +642,7 @@ export const projects = [
     title: '15 MW equipment foundations, guest house, UG RO tank and main gate',
     location: 'Arani',
     capacity: '15 MW',
-    image: imgInd3,
+    image: imgProjectCivil4,
     scope: 'Equipment foundations, guest house, UG RO tank, and main gate work for Renfra Energy India Pvt. Ltd.',
     status: '2024',
     client: 'Renfra Energy India Pvt. Ltd.',
@@ -641,7 +652,7 @@ export const projects = [
     title: '25 MW guest house building and UG RO water tank',
     location: 'Trichy',
     capacity: '25 MW',
-    image: imgInst4,
+    image: imgProject21,
     scope: 'Guest house building and UG RO water tank scope for Renfra Energy India Pvt. Ltd. at Trichy.',
     status: '2024',
     client: 'Renfra Energy India Pvt. Ltd.',
@@ -651,7 +662,7 @@ export const projects = [
     title: '12 MW solar power plant operation and maintenance',
     location: 'Begur, Karnataka',
     capacity: '12 MW',
-    image: imgRes5,
+    image: imgProjectOm1,
     scope: 'Operation and maintenance scope for the 12 MW Prozeal Infra solar power plant at Begur.',
     status: '2024',
     client: 'Prozeal Infra',
@@ -661,7 +672,7 @@ export const projects = [
     title: '4 MW solar power plant operation and maintenance',
     location: 'Mysore, Karnataka',
     capacity: '4 MW',
-    image: imgInst2,
+    image: imgProjectOm2,
     scope: 'Operation and maintenance scope for the 4 MW Prozeal Infra solar power plant at Mysore.',
     status: '2024',
     client: 'Prozeal Infra',
@@ -671,7 +682,7 @@ export const projects = [
     title: '10 MW equipment foundations, guest house, EBDP yard and MCR building',
     location: 'Karaikal',
     capacity: '10 MW',
-    image: imgInd4,
+    image: imgProject24,
     scope: 'Equipment foundations, guest house, EBDP yard, and MCR building work for Renfra Energy India Pvt. Ltd.',
     status: '2025',
     client: 'Renfra Energy India Pvt. Ltd.',
@@ -681,7 +692,7 @@ export const projects = [
     title: '4 MW piling work',
     location: 'Thachur',
     capacity: '4 MW',
-    image: imgCom4,
+    image: imgProjectCivil5,
     scope: 'Piling work documented for Renfra Energy India Pvt. Ltd. at the Thachur solar project.',
     status: '2025',
     client: 'Renfra Energy India Pvt. Ltd.',
@@ -691,7 +702,7 @@ export const projects = [
     title: '6 MW equipment foundations, UG RO tank, EBDP yard and MCR building',
     location: 'Thachur',
     capacity: '6 MW',
-    image: imgCom5,
+    image: imgProjectCivil3,
     scope: 'Equipment foundations, UG RO tank, EBDP yard, and MCR building scope for Renfra Energy India Pvt. Ltd.',
     status: '2025',
     client: 'Renfra Energy India Pvt. Ltd.',
@@ -701,7 +712,7 @@ export const projects = [
     title: '3.5 km chain-link fencing work',
     location: 'Narimanam',
     capacity: '3.5 km',
-    image: imgInst1,
+    image: imgProjectDc4,
     scope: 'Chain-link fencing work documented as under construction for Renfra Energy India Pvt. Ltd.',
     status: '2025',
     client: 'Renfra Energy India Pvt. Ltd.',
@@ -711,7 +722,7 @@ export const projects = [
     title: 'Complete EPC of 5 MW / 6.5 MWp solar PV plant',
     location: 'Trichy',
     capacity: '6.5 MWp',
-    image: imgEpc,
+    image: imgProjectDc1,
     scope: 'Complete EPC scope for a 5 MW / 6.5 MWp solar PV plant, documented as under development.',
     status: '2025',
     client: 'RVNS Green Energy',
