@@ -126,7 +126,7 @@ export const socials = [
   { label: 'Facebook',  icon: FaFacebookF,  href: '#', color: '#1877F2' },
   { label: 'Instagram', icon: FaInstagram,  href: 'https://www.instagram.com/anbu_engineering_services?utm_source=qr&igsh=MTlsdGhucnJtMnA4bQ%3D%3D', color: '#E1306C' },
   { label: 'LinkedIn',  icon: FaLinkedinIn, href: '#', color: '#0A66C2' },
-  { label: 'WhatsApp',  icon: FaWhatsapp,   href: '#', color: '#25D366' },
+  { label: 'WhatsApp',  icon: FaWhatsapp,   href: `https://wa.me/${company.whatsapp}`, color: '#25D366' },
 ];
 
 export const images = {
